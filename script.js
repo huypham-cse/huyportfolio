@@ -161,7 +161,7 @@
     const t = make('img'); t.src = row.dataset.photo; t.alt = ''; t.loading = 'lazy'; f.append(t);
     row.append(f);
   });
-  fetch('posts.json').then(r => r.json()).then(posts => {
+  fetch('posts.json', { cache: 'no-cache' }).then(r => r.json()).then(posts => {
     if (!posts.length) return;
     $('#posts').replaceChildren(...posts.map(p => {
       const feature = p === posts[0];
