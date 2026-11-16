@@ -282,7 +282,7 @@ html:has(#reader[open]) { overflow: hidden; }
 .tally dd { margin: 10px 0 0; font: 500 11px var(--mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
 .row.award { grid-template-columns: 130px minmax(0, 1fr) 132px; align-items: start; }
 .ph { grid-column: 3; width: 132px; aspect-ratio: 3 / 2; overflow: hidden; background: var(--line); }
-.ph img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.ph img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; display: block; } /* bias toward faces */
 [hidden] { display: none !important; }
 .skills { display: grid; gap: 28px; }
 .skills h3 { font: 500 12px/1 var(--sans); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
