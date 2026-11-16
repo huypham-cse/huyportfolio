@@ -1,0 +1,376 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pham Huynh Gia Huy — Computer Engineering, Edge ML & Retrieval</title>
+  <meta name="description" content="Pham Huynh Gia Huy — Computer Engineering student at HCMUT, working on AI-enabled applications, retrieval-augmented assistants, embedded systems and efficient machine learning at the edge.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600&family=Gelasio:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <script>document.documentElement.classList.add('js')</script>
+</head>
+<body>
+  <div class="progress" aria-hidden="true"></div>
+
+  <nav class="nav" aria-label="Main">
+    <a class="wordmark" href="#journey"><img src="assets/logo.svg" alt="" width="36" height="36"><span>Gia Huy<small>PHAM HUYNH GIA HUY</small></span></a>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#news">News</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#publications">Research</a></li>
+      <li><a href="#blog">Blog</a></li>
+      <li><a href="#awards">Awards</a></li>
+    </ul>
+    <a class="btn" href="#contact">Get in touch</a>
+  </nav>
+
+  <main>
+    <!-- 01 — scroll story: a board booting up, from dark and silent to output -->
+    <section class="journey" id="journey" aria-label="Introduction">
+      <div class="stage" id="stage">
+        <svg id="board" aria-hidden="true"></svg>
+        <div class="stage-copy">
+          <p class="kicker">Boot sequence <span>/ a short story about how I work</span></p>
+          <div class="frames">
+            <div class="frame on">
+              <p class="label">01 / Power on</p>
+              <p class="display">It starts in the <em>dark.</em></p>
+              <p class="sub">No audience. No applause. Just a board, a datasheet and the decision to begin.</p>
+            </div>
+            <div class="frame">
+              <p class="label">02 / Clock</p>
+              <p class="display">Show up on every <em>tick.</em></p>
+              <p class="sub">A clock does not wait for motivation. Discipline is a signal that never skips a cycle.</p>
+            </div>
+            <div class="frame">
+              <p class="label">03 / Route</p>
+              <p class="display">Build quietly, <em>trace by trace.</em></p>
+              <p class="sub">Most of the work is invisible: the routing, the debugging, the nights nobody sees.</p>
+            </div>
+            <div class="frame">
+              <p class="label">04 / Compute</p>
+              <p class="display">Hustle until the logic <em>holds.</em></p>
+              <p class="sub">Test. Fail. Rewire. Repeat, until the output stops being luck and becomes design.</p>
+            </div>
+            <div class="frame">
+              <p class="label">05 / Output</p>
+              <p class="display">Then let the <em>results</em> speak.</p>
+              <h1 class="sub">I'm <strong>Pham Huynh Gia Huy</strong>, a Computer Engineering student at HCMUT, building intelligence from the signal up.</h1>
+              <p class="cta"><a class="btn" href="#projects">See the work</a><a class="link" href="#about">About me</a></p>
+            </div>
+          </div>
+        </div>
+        <dl class="hud" aria-hidden="true">
+          <div><dt>VCC</dt><dd id="hud-vcc">0.00 V</dd></div>
+          <div><dt>CLK</dt><dd id="hud-clk">0 MHz</dd></div>
+          <div><dt>CYC</dt><dd id="hud-cyc">0x00000</dd></div>
+          <div><dt>STAT</dt><dd id="hud-stat">COLD START</dd></div>
+        </dl>
+        <span class="scroll-hint">Scroll to power on</span>
+        <ol class="steps" aria-hidden="true">
+          <li class="on"><b>01</b> Power</li>
+          <li><b>02</b> Clock</li>
+          <li><b>03</b> Route</li>
+          <li><b>04</b> Compute</li>
+          <li><b>05</b> Output</li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <header><p class="label">02 / About</p></header>
+      <div>
+        <h2 class="reveal">A student of how machines <em>learn to listen.</em></h2>
+        <div class="about-grid">
+        <!-- PORTRAIT: assets/portrait.jpg is cropped from the SIU Painting with AI 2024 press photo; replace with your own (4:5) -->
+        <figure class="portrait reveal">
+          <div class="shot"><span>Portrait<br>assets/portrait.jpg</span><img src="assets/portrait.jpg" alt="Portrait of Pham Huynh Gia Huy" onerror="this.remove()"></div>
+          <figcaption>fig. 0 — Second Prize, Painting with AI 2024, Saigon International University</figcaption>
+        </figure>
+        <div>
+        <div class="prose reveal">
+          <p>Hi, I'm Gia Huy — a first-year Computer Engineering student at <a class="link" href="https://hcmut.edu.vn" target="_blank" rel="noopener">Ho Chi Minh City University of Technology (HCMUT), VNU-HCM</a>.</p>
+          <p>I have built AI-enabled web applications and retrieval-augmented assistants, most recently CompeTech, a student development platform. I am interested in embedded systems and efficient machine learning at the edge, and I am currently developing the hardware and digital-systems foundation for that work.</p>
+          <p class="muted">Based in Ho Chi Minh City, Vietnam · 10.77° N, 106.66° E</p>
+        </div>
+        <div class="reveal" style="margin-top:36px">
+          <p class="label">Research interests</p>
+          <ul class="tags interest">
+            <li>Embedded systems</li>
+            <li>Efficient ML at the edge</li>
+            <li>Retrieval-augmented generation</li>
+            <li>AI in education</li>
+          </ul>
+        </div>
+        </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="news">
+      <header><p class="label">03 / News</p></header>
+      <div>
+        <h2 class="reveal">Latest <em>news.</em></h2>
+        <div class="row reveal"><time>2026</time><div><strong>Started at HCMUT</strong><p>Began my undergraduate degree in Computer Engineering at the Faculty of Computer Science and Engineering.</p></div></div>
+        <div class="row reveal"><time>Oct 2026</time><div><strong>CompeTech opens Dân trí's report on digital school management</strong><p>The piece follows how AI and shared data are changing how Ho Chi Minh City schools are run. <a class="link" href="https://dantri.com.vn/giao-duc/du-lieu-so-mo-duong-but-phat-tu-nhung-giai-phap-quan-tri-20261030201846973.htm" target="_blank" rel="noopener">Read ↗</a></p></div></div>
+        <div class="row reveal"><time>Jul 2026</time><div><strong>CompeTech featured in Dân trí</strong><p>A feature on how the platform turns conduct evaluation from deducting points into adding them, after a pilot at Nguyen Chi Thanh High School. <a class="link" href="https://dantri.com.vn/giao-duc/thay-giao-tphcm-cung-hoc-sinh-tao-nen-tang-ai-doi-moi-danh-gia-ren-luyen-20260719191326536.htm" target="_blank" rel="noopener">Read ↗</a></p></div></div>
+        <div class="row reveal"><time>May 2026</time><div><strong>NCT STEMists in Nhân Dân's special report</strong><p>Part of a series on building Vietnam's workforce for the digital era, from high-school STEM to university. <a class="link" href="https://nhandan.vn/special/chienluoc_nguonnhanluc_kynguyenso/index.html" target="_blank" rel="noopener">Read ↗</a></p></div></div>
+        <div class="row reveal"><time>Feb 2026</time><div><strong>Nhân Dân covers STEM at Nguyen Chi Thanh High School</strong><p>The article reports CompeTech's First Prize, chosen from more than 7,700 entries nationwide and the only Ho Chi Minh City entry to win in its category. <a class="link" href="https://nhandan.vn/giao-duc-stem-tai-truong-thpt-nguyen-chi-thanh-post944221.html" target="_blank" rel="noopener">Read ↗</a></p></div></div>
+        <div class="row reveal"><time>2026</time><div><strong>Third Prize, HCMC Science and Engineering Fair</strong><p>CompeTech placed third in the Systems Software category (2025–2026).</p></div></div>
+        <div class="row reveal"><time>Oct 2025</time><div><strong>Second Prize, HUIT Startup 2025</strong><p>How To Love Viet Nam finished runner-up and also took the Audience Choice and Most Impressive Booth awards. <a class="link" href="https://congthuong.vn/tim-ra-quan-quan-cuoc-thi-huit-startup-voi-y-tuong-khoi-nghiep-2025-428370.html" target="_blank" rel="noopener">Read ↗</a></p></div></div>
+        <div class="row reveal"><time>2025</time><div><strong>First Prize, Pioneering AI Applications in Education</strong><p>Awarded by the Ministry of Education and Training for CompeTech, built with teacher Nguyen Minh Ly and Nguyen Khanh Nam.</p></div></div>
+        <div class="row reveal"><time>2025</time><div><strong>Second Prize, 9th Makerthon Programming Competition</strong><p>Ho Chi Minh City. AI algorithm development and a RAG chatbot.</p></div></div>
+        <div class="row reveal"><time>Mar 2025</time><div><strong>First Prize, HSU Programming Challenge 2025</strong><p>How To Love Viet Nam won the high-school category at Hoa Sen University. <a class="link" href="https://www.hoasen.edu.vn/cntt/chung-ket-hsu-programming-challenge-2025/" target="_blank" rel="noopener">Read ↗</a></p></div></div>
+      </div>
+    </section>
+
+    <section class="section" id="projects">
+      <header><p class="label">04 / Projects</p></header>
+      <div>
+        <h2 class="reveal">Selected <em>projects.</em></h2>
+
+        <article class="project reveal">
+          <span>i.</span>
+          <div>
+            <h3>CompeTech</h3>
+            <p class="kind">AI-enabled student development platform</p>
+            <p>A web application for tracking student development, reviewing evidence and supporting career exploration, with retrieval-augmented question answering and generative-AI features for CV feedback and career guidance. Built with teacher Nguyen Minh Ly and Nguyen Khanh Nam, it covers conduct scores, activities, career guidance and entrepreneurship, and was piloted at Nguyen Chi Thanh High School. AI suggestions are always reviewed by a teacher.</p>
+            <ul class="tags"><li>React</li><li>Python</li><li>FastAPI</li><li>Firebase</li><li>Docker</li><li>RAG</li></ul>
+            <p class="links"><a class="link" href="#">GitHub ↗</a><a class="link" href="https://competech.netlify.app/" target="_blank" rel="noopener">Live demo ↗</a><a class="link" href="https://dantri.com.vn/giao-duc/thay-giao-tphcm-cung-hoc-sinh-tao-nen-tang-ai-doi-moi-danh-gia-ren-luyen-20260719191326536.htm" target="_blank" rel="noopener">Press: Dân trí ↗</a><a class="link" href="https://nhandan.vn/giao-duc-stem-tai-truong-thpt-nguyen-chi-thanh-post944221.html" target="_blank" rel="noopener">Press: Nhân Dân ↗</a></p>
+          </div>
+          <p class="when">Apr 2025 – Jun 2026</p>
+        </article>
+
+        <article class="project reveal">
+          <span>ii.</span>
+          <div>
+            <h3>How To Love Viet Nam</h3>
+            <p class="kind">Product suite for teaching and learning History</p>
+            <p>A web product suite that supports the teaching and learning of History and local educational content in Ho Chi Minh City, with generative-AI assistance, flashcards, e-learning lectures and mind maps. First Prize at HSU Programming Challenge 2025, Second Prize at the HCMC Science and Engineering Fair and at the 6th HUIT Startup competition, and a Silver Medal at the HCMC Design, Fabrication and Application Awards.</p>
+            <ul class="tags"><li>ReactJS</li><li>Generative AI</li><li>E-learning</li></ul>
+            <p class="links"><a class="link" href="https://howtolovevietnamreactjs.netlify.app/" target="_blank" rel="noopener">Live demo ↗</a><a class="link" href="https://www.hoasen.edu.vn/cntt/chung-ket-hsu-programming-challenge-2025/" target="_blank" rel="noopener">Press: Hoa Sen University ↗</a><a class="link" href="https://congthuong.vn/tim-ra-quan-quan-cuoc-thi-huit-startup-voi-y-tuong-khoi-nghiep-2025-428370.html" target="_blank" rel="noopener">Press: Công Thương ↗</a></p>
+          </div>
+          <p class="when">2025</p>
+        </article>
+
+        <article class="project reveal">
+          <span>iii.</span>
+          <div>
+            <h3>Vietnam Information Assistant</h3>
+            <p class="kind">RAG chatbot</p>
+            <p>A document-grounded question-answering pipeline that retrieves relevant passages before generating responses, with a Python API and retrieval workflow over indexed PDF source material.</p>
+            <ul class="tags"><li>FastAPI</li><li>LlamaIndex</li><li>Chroma</li><li>PDF indexing</li></ul>
+            <p class="links"><a class="link" href="#">GitHub ↗</a><a class="link" href="#">Live demo ↗</a></p>
+          </div>
+          <p class="when">Apr – Jun 2026</p>
+        </article>
+
+        <article class="project reveal">
+          <span>iv.</span>
+          <div>
+            <h3>UniLife</h3>
+            <p class="kind">Competency-based student development platform</p>
+            <p>Second Prize at the 9th Makerthon and a Bronze Medal at the HCMC Design, Fabrication and Application Awards. Helps university students calculate and review development scores against a defined competency framework, using a rules-based rubric with weighted criteria that shows how each score is calculated.</p>
+            <ul class="tags"><li>Web application</li><li>Rules-based scoring</li></ul>
+            <p class="links"><a class="link" href="#">GitHub ↗</a><a class="link" href="https://unilifehub.netlify.app/" target="_blank" rel="noopener">Live demo ↗</a></p>
+          </div>
+          <p class="when">Dec 2024 – Feb 2025</p>
+        </article>
+        <!-- PLACEHOLDER: every href="#" in .links needs the real URL -->
+      </div>
+    </section>
+
+    <section class="section" id="publications">
+      <header><p class="label">05 / Research</p></header>
+      <div>
+        <h2 class="reveal">Publications &amp; <em>working notes.</em></h2>
+        <!-- PLACEHOLDER: replace with real entries; remove the "placeholder" class when filled -->
+        <div class="pub placeholder reveal">
+          <p class="label">In preparation</p>
+          <h3>Paper title placeholder</h3>
+          <p>Authors · Venue · Year — papers, preprints and technical reports will be listed here.</p>
+          <p class="links"><a class="link" href="#">Paper ↗</a><a class="link" href="#">PDF ↗</a><a class="link" href="#">Code ↗</a></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="blog">
+      <header><p class="label">06 / Blog</p></header>
+      <div>
+        <h2 class="reveal">Notes &amp; press from the <em>workbench.</em></h2>
+        <!-- Posts come from posts.json (see tools/fetch_posts.py); the cards below only show if it cannot load -->
+        <div class="posts" id="posts">
+          <p class="muted">Posts load from posts.json when the site runs on a server.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="skills">
+      <header><p class="label">07 / Skills</p></header>
+      <div>
+        <h2 class="reveal">Tools I <em>think with.</em></h2>
+        <div class="skills reveal">
+          <div><h3>Languages</h3><ul class="tags"><li>Python</li><li>C++</li><li>JavaScript</li></ul></div>
+          <div><h3>Frameworks &amp; infrastructure</h3><ul class="tags"><li>React</li><li>FastAPI</li><li>Firebase</li><li>Docker</li></ul></div>
+          <div><h3>AI &amp; retrieval</h3><ul class="tags"><li>Retrieval-augmented generation</li><li>Document indexing</li><li>Prompt integration</li><li>LlamaIndex</li><li>Chroma</li></ul></div>
+          <div><h3>Spoken languages</h3><ul class="tags"><li>Vietnamese (native)</li><li>English (IELTS 7.0)</li></ul></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="education">
+      <header><p class="label">08 / Education</p></header>
+      <div>
+        <h2 class="reveal">Education.</h2>
+        <div class="row reveal"><span class="when">2026 – Present</span><div><img class="crest" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/HCMUT_official_logo.png/120px-HCMUT_official_logo.png" alt="HCMUT logo" onerror="this.remove()"><h3>Ho Chi Minh City University of Technology (HCMUT), VNU-HCM</h3><p>Undergraduate student in Computer Engineering · Faculty of Computer Science and Engineering</p></div></div>
+        <div class="row reveal"><span class="when">2023 – 2026</span><div><!-- LOGO: save the school crest as assets/nct.png --><img class="crest" src="assets/nct.png" alt="Nguyen Chi Thanh High School logo" onerror="this.remove()"><h3>Nguyen Chi Thanh High School, Ho Chi Minh City</h3><p>Annual academic averages: 9.3 / 10 (Grade 10), 9.5 / 10 (Grade 11), 9.4 / 10 (Grade 12).</p></div></div>
+      </div>
+    </section>
+
+    <section class="section" id="experience">
+      <header><p class="label">09 / Experience</p></header>
+      <div>
+        <h2 class="reveal">Experience &amp; <em>leadership.</em></h2>
+        <div class="row reveal"><span class="when">Three years</span><div><h3>NCT STEMists</h3><p>Led the STEM club at Nguyen Chi Thanh High School, focused on AI exploration and web application projects. The club is headed by teacher Nguyen Minh Ly and has been covered by <a class="link" href="https://nhandan.vn/giao-duc-stem-tai-truong-thpt-nguyen-chi-thanh-post944221.html" target="_blank" rel="noopener">Nhân Dân ↗</a>. <a class="link" href="https://heyzine.com/flip-book/5b5550e9c1.html" target="_blank" rel="noopener">Club booklet ↗</a></p></div></div>
+        <!-- PLACEHOLDER: research internships / lab positions -->
+        <div class="row reveal"><span class="when">—</span><div><p><i>Research and work experience to come.</i></p></div></div>
+      </div>
+    </section>
+
+    <section class="section" id="awards">
+      <header><p class="label">10 / Awards</p></header>
+      <div>
+        <h2 class="reveal">Awards &amp; <em>honors.</em></h2>
+        <dl class="tally reveal">
+          <div><dt>21</dt><dd>awards &amp; honors</dd></div>
+          <div><dt>2</dt><dd>first prizes</dd></div>
+          <div><dt>7</dt><dd>second prizes &amp; silver</dd></div>
+          <div><dt>1</dt><dd>national award</dd></div>
+        </dl>
+        <!-- Grade 10–11 entries come from the NCT STEMists Handbook. Photos are press photos captioned with my name or team; add data-photo to a row to give it one. -->
+        <h3 class="group reveal">National</h3>
+        <div class="row award reveal" data-photo="https://cdn2.tuoitre.vn/giaoduc/uploads/2026/02/23-2-1.jpg"><time>2025</time><div><strong>First Prize — Vietnam AI in Education Excellence Awards</strong><p>Pioneering AI Applications in Education, co-organised by the Ministry of Education and Training and RMIT University Vietnam. CompeTech, with teacher Nguyen Minh Ly and Nguyen Khanh Nam, chosen from more than 7,700 entries nationwide and the only Ho Chi Minh City winner in its category. <a class="link" href="https://nhandan.vn/giao-duc-stem-tai-truong-thpt-nguyen-chi-thanh-post944221.html" target="_blank" rel="noopener">Nhân Dân ↗</a> <a class="link" href="https://tuoitre.vn/giaoduc/chuyen-hoc-duong/thay-tro-tien-phong-ung-dung-ai-trong-giao-duc.htm" target="_blank" rel="noopener">Tạp chí Giáo dục ↗</a></p></div></div>
+
+        <h3 class="group reveal">Grade 12 · 2025–26</h3>
+        <div class="row award reveal"><time>2025–26</time><div><strong>Third Prize — Ho Chi Minh City Science and Engineering Fair</strong><p>Systems Software category. CompeTech.</p></div></div>
+        <div class="row award reveal" data-photo="https://news.vinathis.com/uploads/news/2025_10/tuna1865.jpg"><time>Oct 2025</time><div><strong>Second Prize — HUIT Startup 2025</strong><p>How To Love Viet Nam, runner-up at the 6th HUIT Startup competition, Ho Chi Minh City University of Industry and Trade. The team also won the Audience Choice and Most Impressive Booth awards. <a class="link" href="https://congthuong.vn/tim-ra-quan-quan-cuoc-thi-huit-startup-voi-y-tuong-khoi-nghiep-2025-428370.html" target="_blank" rel="noopener">Source ↗</a></p></div></div>
+        <div class="row award reveal"><time>2025</time><div><strong>Third Prize — Ho Chi Minh City Handheld Calculator Competition</strong><p>Chemistry.</p></div></div>
+
+        <h3 class="group reveal">Grade 11 · 2024–25</h3>
+        <div class="row award reveal"><time>Mar 2025</time><div><strong>First Prize — HSU Programming Challenge 2025</strong><p>High-school category. How To Love Viet Nam, a web and app with generative AI for learning History, built in a team of five. <a class="link" href="https://www.hoasen.edu.vn/cntt/chung-ket-hsu-programming-challenge-2025/" target="_blank" rel="noopener">Source ↗</a></p></div></div>
+        <div class="row award reveal"><time>2025</time><div><strong>Second Prize — Ho Chi Minh City Science and Engineering Fair</strong><p>How To Love Viet Nam, with Nguyen Khanh Nam.</p></div></div>
+        <div class="row award reveal"><time>2025</time><div><strong>Second Prize — School Science and Engineering Fair</strong><p>How To Love Viet Nam, the entry that went on to the city round.</p></div></div>
+        <div class="row award reveal"><time>2025</time><div><strong>Second Prize — 9th Makerthon Programming Competition</strong><p>UniLife, a competency-based platform for university students.</p></div></div>
+        <div class="row award reveal"><time>2025</time><div><strong>Consolation Prize — 9th Makerthon Programming Competition</strong><p>Questic, an AI chatbot for mock interviews.</p></div></div>
+        <div class="row award reveal"><time>2025</time><div><strong>Silver Medal — Design, Fabrication and Application Awards</strong><p>13th edition, Ho Chi Minh City Youth Creativity Festival. How To Love Viet Nam.</p></div></div>
+        <div class="row award reveal"><time>2025</time><div><strong>Bronze Medal — Design, Fabrication and Application Awards</strong><p>13th edition, Ho Chi Minh City Youth Creativity Festival. UniLife.</p></div></div>
+        <div class="row award reveal"><time>Mar 2025</time><div><strong>Third Prize — “Create with AI” programming contest</strong><p>HCMC Youth Fest 2025, by the HCMC Youth Union and the Center for Youth Science and Technology Development.</p></div></div>
+        <div class="row award reveal"><time>Oct 2024</time><div><strong>Consolation Prize — “Create with AI” contest</strong><p>With Nguyen Khanh Nam. Center for Youth Science and Technology Development and Nguyen Tat Thanh University.</p></div></div>
+        <div class="row award reveal"><time>Aug 2024</time><div><strong>Second Prize — Digital Transformation and AI knowledge contest</strong><p>Center for Youth Science and Technology Development, HCMC Youth Union.</p></div></div>
+        <div class="row award reveal"><time>2025</time><div><strong>Impressive Speaker — Teenager Speaking</strong><p>Debate round of the city festival for academic and research clubs.</p></div></div>
+
+        <h3 class="group reveal">Grade 10 · 2023–24</h3>
+        <div class="row award reveal"><time>2024</time><div><strong>Third Prize — 33rd Ho Chi Minh City Youth Informatics Contest</strong><p>A web platform for learning History and local education content, with Nguyen Khanh Nam.</p></div></div>
+        <div class="row award reveal" data-photo="https://siu.edu.vn/wp-content/uploads/2024/06/ve-tranh-ai-6.jpg"><time>Jun 2024</time><div><strong>Second Prize, Group A — “Painting with AI 2024”, Saigon International University</strong><p>For the artwork “Cánh đồng cuối cùng” (The Last Field), made with Midjourney in a timed final. More than 500 entries nationwide; the prize came with 20 million VND and a full first-year scholarship. <a class="link" href="https://siu.edu.vn/an-tuong-nhung-tac-pham-tai-vong-chung-ket-ve-tranh-cung-ai-2024/" target="_blank" rel="noopener">Source ↗</a></p></div></div>
+        <div class="row award reveal"><time>Apr 2024</time><div><strong>Top 10 — “Painting with AI”, HCMC Youth Fest 2024</strong><p>City-level contest at the Youth Cultural House.</p></div></div>
+        <div class="row award reveal"><time>2024</time><div><strong>Third Prize — School Science and Engineering Fair</strong><p>Smart chemistry study cards and exercises, with Nguyen Hoang An.</p></div></div>
+
+        <h3 class="group reveal">With NCT STEMists, as club leader</h3>
+        <div class="row award reveal"><time>2025</time><div><strong>Gold Medal — HCMC festival of academic and research clubs</strong><p>Young Creativity series 2025.</p></div></div>
+        <div class="row award reveal"><time>2024</time><div><strong>Gold Medal — HCMC festival of academic and research clubs</strong><p>Young Creativity series 2024.</p></div></div>
+        <p class="links reveal"><a class="link" href="https://heyzine.com/flip-book/5b5550e9c1.html" target="_blank" rel="noopener">Source: NCT STEMists Handbook ↗</a></p>
+      </div>
+    </section>
+
+    <section class="section" id="service">
+      <header><p class="label">11 / Service</p></header>
+      <div>
+        <h2 class="reveal">Service &amp; <em>development.</em></h2>
+        <div class="row reveal"><span class="when">Coursework</span><div><strong>LinkedIn Learning</strong><p>Professional development coursework in responsible AI, AI literacy and generative AI strategy.</p></div></div>
+        <!-- PLACEHOLDER: reviewing, teaching assistance, volunteering -->
+        <div class="row reveal"><span class="when">—</span><div><p><i>Academic service, teaching and community work to come.</i></p></div></div>
+      </div>
+    </section>
+  </main>
+
+  <section class="contact" id="contact">
+    <div class="inner">
+      <p class="label">12 / Contact</p>
+      <div class="contact-grid">
+        <div>
+          <h2 class="reveal">The next chapter is a <em>shared one.</em></h2>
+          <p class="reveal" style="max-width:46ch;opacity:.8;margin-bottom:28px">Questions, collaboration, or a short conversation about embedded AI and retrieval. I would be glad to hear from you.</p>
+          <a class="mail reveal" href="mailto:ghuy.pham_cse@hcmut.edu.vn">ghuy.pham_cse@hcmut.edu.vn</a>
+        </div>
+        <div class="playground reveal">
+          <div class="scene" id="scene"><div class="pcb" id="pcb"><span class="silk">GH-2026 · REV A · HCMUT CE</span></div></div>
+          <p class="hint" id="hint">Drag to rotate · tap an LED · press the chip</p>
+        </div>
+      </div>
+      <footer>
+        <div class="foot-cols">
+          <div class="foot-brand"><img src="assets/logo.svg" alt="" width="44" height="44"><p>Pham Huynh Gia Huy. Computer Engineering at HCMUT. Working quietly, from the signal up.</p></div>
+          <div>
+            <h3>Navigate</h3>
+            <ul>
+              <li><a href="#about">About</a></li>
+              <li><a href="#projects">Projects</a></li>
+              <li><a href="#publications">Research</a></li>
+              <li><a href="#blog">Blog</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3>Elsewhere</h3>
+            <!-- PLACEHOLDER: replace each # with the real profile URL -->
+            <ul>
+              <li><a href="#">GitHub ↗</a></li>
+              <li><a href="#">LinkedIn ↗</a></li>
+              <li><a href="#">Google Scholar ↗</a></li>
+              <li><a href="#">Facebook ↗</a></li>
+              <li><a href="#">Curriculum vitae ↗</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="affil">
+          <span>Affiliations</span>
+          <a href="https://hcmut.edu.vn" target="_blank" rel="noopener"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/HCMUT_official_logo.png/120px-HCMUT_official_logo.png" alt="HCMUT" onerror="this.remove()">HCMUT · VNU-HCM</a>
+          <a href="https://heyzine.com/flip-book/5b5550e9c1.html" target="_blank" rel="noopener"><img src="assets/nct.png" alt="" onerror="this.remove()">NCT STEMists · Nguyen Chi Thanh High School</a>
+        </div>
+        <p class="bigname" aria-hidden="true">Gia Huy.</p>
+        <div class="foot-bar">
+          <span>© 2026 Pham Huynh Gia Huy</span>
+          <span>From Ho Chi Minh City, to the world.</span>
+          <a href="#journey">Back to power on ↑</a>
+        </div>
+      </footer>
+    </div>
+  </section>
+
+  <dialog id="reader" aria-labelledby="reader-title">
+    <header class="r-top">
+      <span class="label" id="reader-kicker"></span>
+      <form method="dialog"><button class="r-close">Close <span aria-hidden="true">✕</span></button></form>
+    </header>
+    <article class="r-body">
+      <p class="r-meta" id="reader-meta"></p>
+      <h2 id="reader-title"></h2>
+      <figure class="r-media">
+        <img id="reader-img" alt="">
+        <figcaption id="reader-cap"></figcaption>
+        <div class="r-thumbs" id="reader-thumbs"></div>
+      </figure>
+      <div class="r-prose" id="reader-body"></div>
+      <footer class="r-foot">
+        <a class="btn" id="reader-src" target="_blank" rel="noopener">Read the original ↗</a>
+        <span>Esc to close</span>
+      </footer>
+    </article>
+  </dialog>
+
+  <script src="script.js"></script>
+</body>
+</html>
