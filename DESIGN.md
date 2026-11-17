@@ -31,7 +31,8 @@ Rule: blue is an accent, not a fill. At most one blue italic phrase per heading.
 - `--mono` (system monospace): machine voice only — HUD readouts, hints, silk-screen text, footer bar.
 - Motif: the chip. Logo (`assets/logo.svg`), hero board and the 3D board in the footer all use it.
 - Hero: scroll-driven SVG "boot sequence" in five chapters (Power, Clock, Route, Compute, Output); dark until Output, then it flips to paper (`script.js`).
-- Footer: CSS 3D board, drag to rotate, LEDs and chip are buttons.
+- Footer: CSS 3D board with an SVG copper layer; drag to spin (with inertia). The four LEDs are a 4-bit number shown on the OLED, SW1 counts up, U1 reboots.
+- News: grouped under sticky year markers (`.year`). Scrollbars are thin and blue.
 - Everything else: `.reveal` (fade + 24px rise, once) via IntersectionObserver.
 - Easing `--ease`; durations 0.6–0.8s. `prefers-reduced-motion` disables time-based motion.
 

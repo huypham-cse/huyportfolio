@@ -17,7 +17,13 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; scrollbar-width: thin; scrollbar-color: var(--blue) var(--paper); }
+#reader, .r-thumbs { scrollbar-width: thin; scrollbar-color: var(--blue) transparent; }
+@supports not (scrollbar-color: auto) { /* older Safari */
+  ::-webkit-scrollbar { width: 9px; height: 9px; }
+  ::-webkit-scrollbar-track { background: var(--paper); }
+  ::-webkit-scrollbar-thumb { background: var(--blue); border: 2px solid var(--paper); }
+}
 body {
   margin: 0;
   background: var(--paper);
@@ -141,6 +147,18 @@ em { font-style: italic; color: var(--blue); }
 .scroll-hint { position: absolute; z-index: 1; left: var(--gutter); bottom: 76px; font: 11px var(--mono); color: var(--sub); }
 .scroll-hint::after { content: ' ↓'; color: var(--hot); }
 
+/* news: sticky year markers */
+.year { display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: 24px; margin-top: 44px; border-top: 1px solid var(--ink); }
+h2 + .year { margin-top: 0; }
+.section .year > h3 { position: sticky; top: 92px; align-self: start; padding-top: 18px; font: 400 clamp(36px, 4vw, 54px)/1 var(--serif); letter-spacing: -0.04em; color: var(--blue); }
+.year .row { grid-template-columns: 64px minmax(0, 1fr); gap: 16px; }
+.year .row:first-child { border-top: 0; }
+.year .row:last-child { border-bottom: 0; }
+.year .row time { font: 500 11px var(--mono); letter-spacing: 0.1em; text-transform: uppercase; padding-top: 6px; }
+.socials { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.socials a { padding: 9px 14px; border: 1px solid var(--ink); font: 500 12px var(--mono); letter-spacing: 0.06em; transition: background 0.25s, color 0.25s; }
+.socials a:hover { background: var(--ink); color: var(--paper); }
+
 /* about: portrait */
 .about-grid { display: grid; grid-template-columns: 260px minmax(0, 1fr); gap: 48px; align-items: start; }
 .portrait { margin: 0; }
@@ -229,7 +247,7 @@ h2 + .group { margin-top: 0; }
 /* ---------- Reader: a single-column magazine article ---------- */
 html:has(#reader[open]) { overflow: hidden; }
 #reader {
-  width: min(880px, calc(100vw - 48px)); max-width: none; max-height: calc(100vh - 48px);
+  width: min(1160px, calc(100vw - 48px)); max-width: none; max-height: calc(100vh - 48px);
   padding: 0; border: 0; border-top: 3px solid var(--blue); overflow-y: auto; overscroll-behavior: contain;
   background: var(--paper); color: var(--ink);
   box-shadow: 0 40px 120px rgba(0, 0, 0, 0.5);
@@ -261,7 +279,7 @@ html:has(#reader[open]) { overflow: hidden; }
 .r-thumbs button.on, .r-thumbs button:hover { opacity: 1; border-color: var(--blue); }
 .r-thumbs img { width: 100%; height: 100%; object-fit: cover; display: block; }
 #reader.no-media .r-media { display: none; }
-.r-prose { display: grid; gap: 16px; max-width: 62ch; padding: 36px 0 44px; color: #4d4945; }
+.r-prose { display: grid; gap: 16px; max-width: 74ch; padding: 36px 0 44px; color: #4d4945; }
 .r-prose .lead { font: 400 21px/1.6 var(--serif); color: var(--ink); }
 .r-prose .lead::first-letter { float: left; margin: 6px 12px 0 0; font: 400 66px/0.8 var(--serif); color: var(--blue); }
 .r-prose h4 { margin-top: 18px; padding-top: 18px; border-top: 1px solid var(--line); font: 500 11px var(--mono); letter-spacing: 0.12em; text-transform: uppercase; color: var(--blue); }
@@ -314,24 +332,28 @@ html:has(#reader[open]) { overflow: hidden; }
 }
 .foot-bar { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; margin-top: 32px; font: 11px var(--mono); opacity: 0.6; }
 
-/* 3D board: drag to rotate, parts are CSS boxes built in script.js */
+/* 3D board: drag to spin; parts are CSS boxes and the copper layer is an SVG, both built in script.js */
+.contact { overflow-x: clip; }
 .playground { display: grid; justify-items: center; gap: 28px; }
-.scene { width: 100%; height: 340px; display: grid; place-items: center; perspective: 900px; cursor: grab; touch-action: pan-y; }
+.scene { width: 100%; height: 360px; display: grid; place-items: center; perspective: 1000px; cursor: grab; touch-action: pan-y; user-select: none; }
 .scene:active { cursor: grabbing; }
 .pcb, .part { transform-style: preserve-3d; }
 .pcb {
-  position: relative; width: 320px; height: 220px; flex: none;
+  position: relative; width: 340px; height: 230px; flex: none; border-radius: 6px;
   transform: rotateX(var(--rx, 58deg)) rotateZ(var(--rz, -32deg));
-  background:
-    repeating-linear-gradient(90deg, rgba(157, 184, 234, 0.16) 0 1px, transparent 1px 20px),
-    repeating-linear-gradient(0deg, rgba(157, 184, 234, 0.16) 0 1px, transparent 1px 20px),
-    #0b2f6e;
-  box-shadow: 0 0 0 1px var(--blue-light), 0 0 80px rgba(157, 184, 234, 0.25);
+  background: #0b2f6e;
+  box-shadow: 0 0 0 1px rgba(157, 184, 234, 0.6), 0 0 90px rgba(157, 184, 234, 0.22);
 }
-.silk { position: absolute; left: 12px; bottom: 8px; font: 9px var(--mono); letter-spacing: 0.12em; color: var(--blue-light); }
+.pcb::before { content: ''; position: absolute; inset: 0; border-radius: 6px; background: #061a40; transform: translateZ(-6px); } /* board thickness */
+.copper { position: absolute; inset: 0; width: 100%; height: 100%; }
+.copper .tr { fill: none; stroke: #c9a24a; stroke-width: 1.6; opacity: 0.75; }
+.copper .pad { fill: #c9c9c2; }
+.copper .via { fill: #0b2f6e; stroke: #c9a24a; stroke-width: 1.5; }
+.copper .hole { fill: #171614; stroke: #c9a24a; stroke-width: 2; }
+.copper text { fill: var(--blue-light); font: 6.5px var(--mono); letter-spacing: 0.08em; }
 .part { position: absolute; padding: 0; border: 0; background: none; --c: #2a2927; }
 .part i { position: absolute; display: block; background: var(--c); }
-.part .top { inset: 0; transform: translateZ(var(--h)); display: grid; place-items: center; font: italic 18px var(--serif); color: var(--paper); }
+.part .top { inset: 0; transform: translateZ(var(--h)); display: grid; place-items: center; font: italic 18px var(--serif); color: var(--paper); transition: transform 0.1s; }
 .part .f { left: 0; bottom: 0; width: 100%; height: var(--h); transform-origin: bottom; transform: rotateX(-90deg); filter: brightness(0.7); }
 .part .b { left: 0; top: 0; width: 100%; height: var(--h); transform-origin: top; transform: rotateX(90deg); filter: brightness(0.7); }
 .part .l { left: 0; top: 0; height: 100%; width: var(--h); transform-origin: left; transform: rotateY(-90deg); filter: brightness(0.85); }
@@ -340,8 +362,13 @@ button.part { cursor: pointer; }
 .part.mcu { --c: var(--night); }
 .part.mcu .top { outline: 1px solid rgba(255, 255, 240, 0.25); outline-offset: -6px; }
 .part.cap { --c: #e9e7d6; }
-.part.usb { --c: #a9a9a2; }
+.part.usb, .part.xtal, .part.sw { --c: #b3b3ac; }
+.part.res { --c: #1c1b19; }
 .part.pin { --c: #c9a24a; }
+.part.sw .top::after { content: ''; width: 56%; height: 56%; border-radius: 50%; background: #1c1b19; }
+.part.sw.down .top { transform: translateZ(3px); }
+.part.oled { --c: #0d0d0f; }
+.part.oled .top { place-items: start; padding: 7px 8px; white-space: pre; font: 8px/1.55 var(--mono); color: #9fd0ff; box-shadow: inset 0 0 0 3px #1c1b19; text-shadow: 0 0 6px rgba(127, 176, 255, 0.8); }
 .part.led { --c: #4b5b7a; }
 .part.led.on { --c: #a9ccff; }
 .part.led.on .top { box-shadow: 0 0 18px 6px #7fb0ff; } /* not filter: it would flatten the 3D box */
@@ -366,8 +393,13 @@ button.part { cursor: pointer; }
   .section h2 { margin-bottom: 28px; }
   .prose { font-size: 16px; }
   .project h3 { font-size: 25px; }
-  .scene { height: 280px; }
-  .pcb { scale: 0.85; }
+  .scene { height: 300px; }
+  .pcb { scale: 0.82; }
+  .year { grid-template-columns: 1fr; gap: 0; }
+  .section .year > h3 { position: static; padding: 14px 0 4px; }
+  .year .row { grid-template-columns: 56px minmax(0, 1fr); gap: 12px; }
+  .contact .mail { font-size: 17px; }
+  .wordmark small { display: none; }
   #reader { width: 100vw; max-height: 100dvh; height: 100dvh; margin: 0; }
   .r-meta { margin-top: 28px; }
   .r-foot > span { display: none; }

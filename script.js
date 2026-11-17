@@ -92,7 +92,8 @@
   };
 
   addEventListener('resize', () => { build(); onScroll(); });
-  addEventListener('scroll', onScroll, { passive: true });
+  let ticking = false; // one update per frame keeps scrolling smooth
+  addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(() => { ticking = false; onScroll(); }); } }, { passive: true });
   build(); onScroll();
 
   // ---------- reveal on scroll ----------
@@ -177,7 +178,7 @@
     }));
   }).catch(() => {}); // no server (file://): the static placeholder cards stay
 
-  // ---------- 3D board: CSS boxes on a tilting plane ----------
+  // ---------- 3D board: CSS boxes on a tilting plane; the four LEDs are a 4-bit register ----------
   const pcb = $('#pcb'), scene = $('#scene'), hint = $('#hint');
   const part = (cls, x, y, w, d, h, label, tag = 'div') => {
     const n = make(tag, 'part ' + cls);
@@ -185,37 +186,77 @@
     ['top', 'f', 'b', 'l', 'r'].forEach(f => n.append(make('i', f, f === 'top' ? label : '')));
     return pcb.appendChild(n);
   };
-  const mcu = part('mcu', 115, 65, 90, 90, 12, 'gh', 'button');
-  mcu.setAttribute('aria-label', 'Run the boot sequence');
-  part('usb', 0, 85, 34, 50, 16);
-  part('cap', 60, 24, 20, 20, 30); part('cap', 60, 176, 20, 20, 30);
-  for (let i = 0; i < 6; i++) part('pin', 232 + i * 13, 196, 7, 7, 18);
+  // copper layer: chip legs, traces, vias, mounting holes and silk-screen labels
+  const legs = [...Array(7).keys()].map(i => { const o = 82 + i * 11; return `<path class="pad" d="M${o + 50} 68h4v7h-4zM${o + 50} 155h4v7h-4zM123 ${o - 3}h7v4h-7zM210 ${o - 3}h7v4h-7z"/>`; }).join('');
+  pcb.insertAdjacentHTML('afterbegin', `<svg class="copper" viewBox="0 0 340 230" aria-hidden="true">
+    <path class="tr" d="M145 68V52L160 37H244M156 68V56L171 41H266M167 68V60L182 45H288M178 68V64L193 49H310V42M123 101H62L52 111H30M123 112H68L58 122H30M123 90H90L62 62V48M123 134H90L62 162V178M217 90H232M217 101H232M217 134H240L256 147M145 162V192L121 206M156 162V200L133 212M167 162V200L145 212M178 162V198L157 212M200 162V171H222"/>
+    <circle class="via" cx="160" cy="37" r="2.5"/><circle class="via" cx="90" cy="90" r="2.5"/><circle class="via" cx="90" cy="134" r="2.5"/><circle class="via" cx="240" cy="134" r="2.5"/><circle class="via" cx="145" cy="192" r="2.5"/>
+    <circle class="hole" cx="13" cy="13" r="5"/><circle class="hole" cx="327" cy="13" r="5"/><circle class="hole" cx="13" cy="217" r="5"/><circle class="hole" cx="327" cy="217" r="5"/>
+    ${legs}
+    <text x="132" y="63">U1</text><text x="238" y="11">D3 D2 D1 D0</text><text x="290" y="150">SW1</text><text x="234" y="122">OLED1</text><text x="34" y="88">J1</text><text x="78" y="40">C1</text><text x="78" y="190">C2</text><text x="254" y="174">Y1</text><text x="216" y="224">J2</text>
+    <text x="28" y="222">GH-2026 · REV B · HCMUT CE</text>
+  </svg>`);
+  const mcu = part('mcu', 130, 75, 80, 80, 10, 'gh', 'button');
+  mcu.setAttribute('aria-label', 'U1: reboot');
+  part('usb', 0, 92, 30, 46, 14);
+  part('cap', 52, 28, 20, 20, 26); part('cap', 52, 178, 20, 20, 26);
+  part('xtal', 222, 166, 28, 11, 8);
+  for (let i = 0; i < 8; i++) part('pin', 118 + i * 12, 206, 6, 6, 16);
+  const oled = part('oled', 232, 60, 92, 52, 5, '').querySelector('.top');
+  const sw = part('sw', 256, 132, 30, 30, 7, '', 'button');
+  sw.setAttribute('aria-label', 'SW1: count up');
   const leds = [0, 1, 2, 3].map(i => {
-    const led = part('led', 236 + i * 19, 22, 13, 13, 8, '', 'button');
-    led.setAttribute('aria-label', 'LED ' + (i + 1));
+    part('res', 239 + i * 22, 36, 10, 6, 3);
+    const led = part('led', 238 + i * 22, 16, 12, 12, 7, '', 'button');
+    led.setAttribute('aria-label', 'LED bit ' + (3 - i));
     return led;
   });
-  const report = () => {
-    const n = leds.filter(l => l.classList.contains('on')).length;
-    hint.textContent = n === leds.length ? 'All systems on. Now say hello.' : `Drag to rotate · LEDs ${n}/${leds.length} · press the chip`;
+
+  let value = 0, msg = 'READY', ac;
+  const beep = f => { // a soft click of sound; silently skipped where audio is unavailable
+    try {
+      ac = ac || new AudioContext();
+      const o = ac.createOscillator(), g = ac.createGain();
+      o.frequency.value = f; g.gain.value = 0.03; o.connect(g).connect(ac.destination);
+      o.start(); o.stop(ac.currentTime + 0.06);
+    } catch { /* no audio */ }
   };
-  let rx = 58, rz = -32, drag = null, moved = false;
+  const render = () => {
+    leds.forEach((l, i) => l.classList.toggle('on', !!(value >> (3 - i) & 1)));
+    oled.textContent = `GH-2026 ${msg}\n0b${value.toString(2).padStart(4, '0')}\n0x${value.toString(16).toUpperCase()} = ${value}`;
+    hint.textContent = value === 15 ? 'All systems on. Now say hello.' : 'Drag to spin · LEDs are a 4-bit number · SW1 counts · U1 reboots';
+  };
+  render();
+
+  let rx = 58, rz = -32, vz = 0, drag = null, moved = false, raf = 0;
+  const calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const turn = () => { pcb.style.setProperty('--rx', rx + 'deg'); pcb.style.setProperty('--rz', rz + 'deg'); };
-  scene.addEventListener('pointerdown', e => { drag = { x: e.clientX, y: e.clientY }; moved = false; });
-  addEventListener('pointerup', () => { drag = null; });
+  const coast = () => { // keep spinning a little after release
+    if (drag || Math.abs(vz) < 0.05) { raf = 0; return; }
+    rz += vz; vz *= 0.94; turn(); raf = requestAnimationFrame(coast);
+  };
+  scene.addEventListener('pointerdown', e => { drag = { x: e.clientX, y: e.clientY }; moved = false; vz = 0; });
+  addEventListener('pointerup', () => { if (drag) { drag = null; if (!raf && !calm) raf = requestAnimationFrame(coast); } });
   addEventListener('pointermove', e => {
     if (!drag) return;
     const dx = e.clientX - drag.x, dy = e.clientY - drag.y;
     if (Math.abs(dx) + Math.abs(dy) > 5) moved = true;
-    rz += dx * 0.4;
+    vz = clamp(-dx * 0.3, -5, 5); rz += -dx * 0.3; // the near edge follows the pointer
     if (e.pointerType !== 'touch') rx = clamp(rx - dy * 0.3, 20, 80); // touch keeps vertical drags for page scroll
     drag = { x: e.clientX, y: e.clientY };
     turn();
   });
-  leds.forEach(l => l.addEventListener('click', () => { if (!moved) { l.classList.toggle('on'); report(); } }));
+  leds.forEach((l, i) => l.addEventListener('click', () => {
+    if (moved) return;
+    value ^= 1 << (3 - i); msg = 'READY'; beep(420 + value * 30); render();
+  }));
+  sw.addEventListener('click', () => {
+    if (moved) return;
+    value = (value + 1) & 15; msg = 'COUNT'; beep(660); render();
+    sw.classList.add('down'); setTimeout(() => sw.classList.remove('down'), 120);
+  });
   mcu.addEventListener('click', () => {
     if (moved) return;
-    leds.forEach(l => l.classList.remove('on'));
-    leds.forEach((l, i) => setTimeout(() => { l.classList.add('on'); report(); }, 180 * (i + 1)));
+    [1, 2, 4, 8, 15, 0].forEach((v, k) => setTimeout(() => { value = v; msg = k < 5 ? 'BOOT' : 'READY'; beep(300 + k * 90); render(); }, 150 * k));
   });
 })();
